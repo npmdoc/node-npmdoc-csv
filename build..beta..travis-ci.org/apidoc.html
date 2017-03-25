@@ -46,7 +46,7 @@
     font-weight: bold;
 }
 </style>
-<h1>api-documentation for
+<h1>api documentation for
     <a
 
         href="http://www.adaltas.com/projects/node-csv/"
@@ -1906,8 +1906,8 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
   // When the writable side finishes, then flush out anything remaining.
   this.once(&#x27;prefinish&#x27;, function() {
     if (typeof this._flush === &#x27;function&#x27;)
-      this._flush(function(er, data) {
-        done(stream, er, data);
+      this._flush(function(er) {
+        done(stream, er);
       });
     else
       done(stream);
@@ -2496,8 +2496,8 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
   // When the writable side finishes, then flush out anything remaining.
   this.once(&#x27;prefinish&#x27;, function() {
     if (typeof this._flush === &#x27;function&#x27;)
-      this._flush(function(er, data) {
-        done(stream, er, data);
+      this._flush(function(er) {
+        done(stream, er);
       });
     else
       done(stream);
@@ -2958,8 +2958,8 @@ csv.parse(data, function(err, data){
   // When the writable side finishes, then flush out anything remaining.
   this.once(&#x27;prefinish&#x27;, function() {
     if (typeof this._flush === &#x27;function&#x27;)
-      this._flush(function(er, data) {
-        done(stream, er, data);
+      this._flush(function(er) {
+        done(stream, er);
       });
     else
       done(stream);
