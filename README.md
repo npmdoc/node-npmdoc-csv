@@ -1,11 +1,13 @@
-# api documentation for  [csv (v1.1.1)](http://www.adaltas.com/projects/node-csv/)  [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-csv.svg)](https://travis-ci.org/npmdoc/node-npmdoc-csv)
+# api documentation for  [csv (v1.1.1)](http://www.adaltas.com/projects/node-csv/)  [![npm package](https://img.shields.io/npm/v/npmdoc-csv.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-csv) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-csv.svg)](https://travis-ci.org/npmdoc/node-npmdoc-csv)
 #### CSV parser with simple api, full of options and tested against large datasets.
 
 [![NPM](https://nodei.co/npm/csv.png?downloads=true)](https://www.npmjs.com/package/csv)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-csv/build/screen-capture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-csv_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-csv/build..beta..travis-ci.org/apidoc.html)
+[![apidoc](https://npmdoc.github.io/node-npmdoc-csv/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-csv_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-csv/build/apidoc.html)
 
-![package-listing](https://npmdoc.github.io/node-npmdoc-csv/build/screen-capture.npmPackageListing.svg)
+![npmPackageListing](https://npmdoc.github.io/node-npmdoc-csv/build/screenCapture.npmPackageListing.svg)
+
+![npmPackageDependencyTree](https://npmdoc.github.io/node-npmdoc-csv/build/screenCapture.npmPackageDependencyTree.svg)
 
 
 
@@ -1108,7 +1110,23 @@ end = function () {
 ```
 - example usage
 ```shell
-n/a
+...
+
+generator.on('readable', function(){
+  while(data = generator.read()){
+    parser.write(data);
+  }
+});
+generator.on('end', function(){
+  parser.end()
+});
+
+parser.on('readable', function(){
+  while(data = parser.read()){
+    transformer.write(data);
+  }
+});
+...
 ```
 
 #### <a name="apidoc.element.csv.generate.Generator.prototype.random"></a>[function <span class="apidocSignatureSpan">csv.generate.Generator.prototype.</span>random ()](#apidoc.element.csv.generate.Generator.prototype.random)
@@ -2068,7 +2086,23 @@ end = function (chunk, encoding, callback) {
 ```
 - example usage
 ```shell
-n/a
+...
+
+generator.on('readable', function(){
+  while(data = generator.read()){
+    parser.write(data);
+  }
+});
+generator.on('end', function(){
+  parser.end()
+});
+
+parser.on('readable', function(){
+  while(data = parser.read()){
+    transformer.write(data);
+  }
+});
+...
 ```
 
 #### <a name="apidoc.element.csv.stringify.Stringifier.prototype.headers"></a>[function <span class="apidocSignatureSpan">csv.stringify.Stringifier.prototype.</span>headers ()](#apidoc.element.csv.stringify.Stringifier.prototype.headers)
