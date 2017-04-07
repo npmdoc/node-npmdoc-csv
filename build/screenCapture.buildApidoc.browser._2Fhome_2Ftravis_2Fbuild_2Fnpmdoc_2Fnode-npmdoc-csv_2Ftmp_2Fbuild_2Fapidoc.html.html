@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="http://www.adaltas.com/projects/node-csv/"
-
-    >csv (v1.1.1)</a>
+    <a href="http://www.adaltas.com/projects/node-csv/">csv (v1.1.1)</a>
 </h1>
 <h4>CSV parser with simple api, full of options and tested against large datasets.</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.csv">module csv</a><ol>
 
@@ -532,7 +525,7 @@
     options = arguments[0];
     callback = arguments[1];
   } else if (arguments.length === 1) {
-    if (typeof arguments[0] === &#x27;function&#x27;) {
+    if (typeof arguments[0] === 'function') {
       options = {};
       callback = arguments[0];
     } else {
@@ -544,7 +537,7 @@
   generator = new Generator(options);
   if (callback) {
     data = [];
-    generator.on(&#x27;readable&#x27;, function() {
+    generator.on('readable', function() {
       var d, results;
       results = [];
       while (d = generator.read()) {
@@ -552,9 +545,9 @@
       }
       return results;
     });
-    generator.on(&#x27;error&#x27;, callback);
-    generator.on(&#x27;end&#x27;, function() {
-      return callback(null, options.objectMode ? data : data.join(&#x27;&#x27;));
+    generator.on('error', callback);
+    generator.on('end', function() {
+      return callback(null, options.objectMode ? data : data.join(''));
     });
   }
   return generator;
@@ -565,7 +558,7 @@
 Execute this script with the command `node samples/callback.js`.
 
 ```javascript
-var csv = require(&#x27;csv&#x27;);
+var csv = require('csv');
 
 csv.<span class="apidocCodeKeywordSpan">generate</span>({seed: 1, columns: 2, length: 20}, function(err, data){
 csv.parse(data, function(err, data){
@@ -605,7 +598,7 @@ csv.parse(data, function(err, data){
     base3.fixed_size = false;
   }
   if (this.fixed_size_buffer == null) {
-    this.fixed_size_buffer = &#x27;&#x27;;
+    this.fixed_size_buffer = '';
   }
   if ((base4 = this.options).start == null) {
     base4.start = Date.now();
@@ -620,20 +613,20 @@ csv.parse(data, function(err, data){
     base7.length = -1;
   }
   if ((base8 = this.options).delimiter == null) {
-    base8.delimiter = &#x27;,&#x27;;
+    base8.delimiter = ',';
   }
   this.count_written = 0;
   this.count_created = 0;
-  if (typeof this.options.columns === &#x27;number&#x27;) {
+  if (typeof this.options.columns === 'number') {
     this.options.columns = new Array(this.options.columns);
   }
   ref = this.options.columns;
-  for (i = j = 0, len = ref.length; j &#x3c; len; i = ++j) {
+  for (i = j = 0, len = ref.length; j &lt; len; i = ++j) {
     v = ref[i];
     if (v == null) {
-      v = &#x27;ascii&#x27;;
+      v = 'ascii';
     }
-    if (typeof v === &#x27;string&#x27;) {
+    if (typeof v === 'string') {
       this.options.columns[i] = Generator[v];
     }
   }
@@ -657,25 +650,25 @@ csv.parse(data, function(err, data){
     data = arguments[0];
     options = arguments[1];
     callback = arguments[2];
-    if (typeof callback !== &#x27;function&#x27;) {
-      throw Error(&#x22;Invalid callback argument: &#x22; + (JSON.stringify(callback)));
+    if (typeof callback !== 'function') {
+      throw Error("Invalid callback argument: " + (JSON.stringify(callback)));
     }
-    if (!(typeof data === &#x27;string&#x27; || Buffer.isBuffer(arguments[0]))) {
-      return callback(Error(&#x22;Invalid data argument: &#x22; + (JSON.stringify(data))));
+    if (!(typeof data === 'string' || Buffer.isBuffer(arguments[0]))) {
+      return callback(Error("Invalid data argument: " + (JSON.stringify(data))));
     }
   } else if (arguments.length === 2) {
-    if (typeof arguments[0] === &#x27;string&#x27; || Buffer.isBuffer(arguments[0])) {
+    if (typeof arguments[0] === 'string' || Buffer.isBuffer(arguments[0])) {
       data = arguments[0];
     } else {
       options = arguments[0];
     }
-    if (typeof arguments[1] === &#x27;function&#x27;) {
+    if (typeof arguments[1] === 'function') {
       callback = arguments[1];
     } else {
       options = arguments[1];
     }
   } else if (arguments.length === 1) {
-    if (typeof arguments[0] === &#x27;function&#x27;) {
+    if (typeof arguments[0] === 'function') {
       callback = arguments[0];
     } else {
       options = arguments[0];
@@ -694,7 +687,7 @@ csv.parse(data, function(err, data){
   if (callback) {
     called = false;
     chunks = options.objname ? {} : [];
-    parser.on(&#x27;readable&#x27;, function() {
+    parser.on('readable', function() {
       var chunk, results;
       results = [];
       while (chunk = parser.read()) {
@@ -706,11 +699,11 @@ csv.parse(data, function(err, data){
       }
       return results;
     });
-    parser.on(&#x27;error&#x27;, function(err) {
+    parser.on('error', function(err) {
       called = true;
       return callback(err);
     });
-    parser.on(&#x27;end&#x27;, function() {
+    parser.on('end', function() {
       if (!called) {
         return callback(null, chunks);
       }
@@ -723,7 +716,7 @@ csv.parse(data, function(err, data){
 Execute this script with the command `node samples/callback.js`.
 
 ```javascript
-var csv = require(&#x27;csv&#x27;);
+var csv = require('csv');
 
 csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
 csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
@@ -762,23 +755,23 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
   if ((base = this.options).rowDelimiter == null) {
     base.rowDelimiter = null;
   }
-  if (typeof this.options.rowDelimiter === &#x27;string&#x27;) {
+  if (typeof this.options.rowDelimiter === 'string') {
     this.options.rowDelimiter = [this.options.rowDelimiter];
   }
   if ((base1 = this.options).delimiter == null) {
-    base1.delimiter = &#x27;,&#x27;;
+    base1.delimiter = ',';
   }
   if ((base2 = this.options).quote == null) {
-    base2.quote = &#x27;&#x22;&#x27;;
+    base2.quote = '"';
   }
   if ((base3 = this.options).escape == null) {
-    base3.escape = &#x27;&#x22;&#x27;;
+    base3.escape = '"';
   }
   if ((base4 = this.options).columns == null) {
     base4.columns = null;
   }
   if ((base5 = this.options).comment == null) {
-    base5.comment = &#x27;&#x27;;
+    base5.comment = '';
   }
   if ((base6 = this.options).objname == null) {
     base6.objname = false;
@@ -819,7 +812,7 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
   this.empty_line_count = 0;
   this.is_int = /^(\-|\+)?([1-9]+[0-9]*)$/;
   this.is_float = function(value) {
-    return (value - parseFloat(value) + 1) &#x3e;= 0;
+    return (value - parseFloat(value) + 1) &gt;= 0;
   };
   this._ = {};
   this._.decoder = new StringDecoder();
@@ -830,8 +823,8 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
   this._.closingQuote = 0;
   this._.line = [];
   this._.chunks = [];
-  this._.rawBuf = &#x27;&#x27;;
-  this._.buf = &#x27;&#x27;;
+  this._.rawBuf = '';
+  this._.buf = '';
   if (this.options.rowDelimiter) {
     this._.rowDelimiterLength = Math.max.apply(Math, this.options.rowDelimiter.map(function(v) {
       return v.length;
@@ -863,13 +856,13 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
     } else {
       options = arguments[0];
     }
-    if (typeof arguments[1] === &#x27;function&#x27;) {
+    if (typeof arguments[1] === 'function') {
       callback = arguments[1];
     } else {
       options = arguments[1];
     }
   } else if (arguments.length === 1) {
-    if (typeof arguments[0] === &#x27;function&#x27;) {
+    if (typeof arguments[0] === 'function') {
       callback = arguments[0];
     } else if (Array.isArray(arguments[0])) {
       data = arguments[0];
@@ -884,7 +877,7 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
   if (data) {
     process.nextTick(function() {
       var d, j, len;
-      for (j = 0, len = data.length; j &#x3c; len; j++) {
+      for (j = 0, len = data.length; j &lt; len; j++) {
         d = data[j];
         stringifier.write(d);
       }
@@ -893,7 +886,7 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
   }
   if (callback) {
     chunks = [];
-    stringifier.on(&#x27;readable&#x27;, function() {
+    stringifier.on('readable', function() {
       var chunk, results;
       results = [];
       while (chunk = stringifier.read()) {
@@ -901,17 +894,17 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
       }
       return results;
     });
-    stringifier.on(&#x27;error&#x27;, function(err) {
+    stringifier.on('error', function(err) {
       return callback(err);
     });
-    stringifier.on(&#x27;end&#x27;, function() {
-      return callback(null, chunks.join(&#x27;&#x27;));
+    stringifier.on('end', function() {
+      return callback(null, chunks.join(''));
     });
   }
   return stringifier;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-var csv = require(&#x27;csv&#x27;);
+var csv = require('csv');
 
 csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
   csv.parse(data, function(err, data){
@@ -950,10 +943,10 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
   stream.Transform.call(this, options);
   this.options = options;
   if ((base = this.options).delimiter == null) {
-    base.delimiter = &#x27;,&#x27;;
+    base.delimiter = ',';
   }
   if ((base1 = this.options).quote == null) {
-    base1.quote = &#x27;&#x22;&#x27;;
+    base1.quote = '"';
   }
   if ((base2 = this.options).quoted == null) {
     base2.quoted = false;
@@ -965,7 +958,7 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
     base4.eof = true;
   }
   if ((base5 = this.options).escape == null) {
-    base5.escape = &#x27;&#x22;&#x27;;
+    base5.escape = '"';
   }
   if ((base6 = this.options).columns == null) {
     base6.columns = null;
@@ -978,15 +971,15 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
   }
   if ((base9 = this.options.formatters).date == null) {
     base9.date = function(value) {
-      return &#x27;&#x27; + value.getTime();
+      return '' + value.getTime();
     };
   }
   if ((base10 = this.options.formatters).bool == null) {
     base10.bool = function(value) {
       if (value) {
-        return &#x27;1&#x27;;
+        return '1';
       } else {
-        return &#x27;&#x27;;
+        return '';
       }
     };
   }
@@ -996,26 +989,26 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
     };
   }
   if ((base12 = this.options).rowDelimiter == null) {
-    base12.rowDelimiter = &#x27;\n&#x27;;
+    base12.rowDelimiter = '\n';
   }
   if (this.countWriten == null) {
     this.countWriten = 0;
   }
   switch (this.options.rowDelimiter) {
-    case &#x27;auto&#x27;:
+    case 'auto':
       this.options.rowDelimiter = null;
       break;
-    case &#x27;unix&#x27;:
-      this.options.rowDelimiter = &#x22;\n&#x22;;
+    case 'unix':
+      this.options.rowDelimiter = "\n";
       break;
-    case &#x27;mac&#x27;:
-      this.options.rowDelimiter = &#x22;\r&#x22;;
+    case 'mac':
+      this.options.rowDelimiter = "\r";
       break;
-    case &#x27;windows&#x27;:
-      this.options.rowDelimiter = &#x22;\r\n&#x22;;
+    case 'windows':
+      this.options.rowDelimiter = "\r\n";
       break;
-    case &#x27;unicode&#x27;:
-      this.options.rowDelimiter = &#x22;\u2028&#x22;;
+    case 'unicode':
+      this.options.rowDelimiter = "\u2028";
   }
   return this;
 }</pre></li>
@@ -1034,35 +1027,35 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
     <li>description and source-code<pre class="apidocCodePre">transform = function () {
   var argument, callback, data, error, handler, i, j, k, len, options, result, transform, type, v;
   options = {};
-  for (i = j = 0, len = arguments.length; j &#x3c; len; i = ++j) {
+  for (i = j = 0, len = arguments.length; j &lt; len; i = ++j) {
     argument = arguments[i];
     type = typeof argument;
     if (argument === null) {
-      type = &#x27;null&#x27;;
-    } else if (type === &#x27;object&#x27; &#x26;&#x26; Array.isArray(argument)) {
-      type = &#x27;array&#x27;;
+      type = 'null';
+    } else if (type === 'object' &amp;&amp; Array.isArray(argument)) {
+      type = 'array';
     }
     if (i === 0) {
-      if (type === &#x27;function&#x27;) {
+      if (type === 'function') {
         handler = argument;
       } else if (type !== null) {
         data = argument;
       }
       continue;
     }
-    if (type === &#x27;object&#x27;) {
+    if (type === 'object') {
       for (k in argument) {
         v = argument[k];
         options[k] = v;
       }
-    } else if (type === &#x27;function&#x27;) {
-      if (handler &#x26;&#x26; i === arguments.length - 1) {
+    } else if (type === 'function') {
+      if (handler &amp;&amp; i === arguments.length - 1) {
         callback = argument;
       } else {
         handler = argument;
       }
-    } else if (type !== &#x27;null&#x27;) {
-      throw new Error(&#x27;Invalid arguments&#x27;);
+    } else if (type !== 'null') {
+      throw new Error('Invalid arguments');
     }
   }
   transform = new Transformer(options, handler);
@@ -1070,7 +1063,7 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
   if (data) {
     process.nextTick(function() {
       var len1, m, row;
-      for (m = 0, len1 = data.length; m &#x3c; len1; m++) {
+      for (m = 0, len1 = data.length; m &lt; len1; m++) {
         row = data[m];
         if (error) {
           break;
@@ -1082,7 +1075,7 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
   }
   if (callback || options.consume) {
     result = [];
-    transform.on(&#x27;readable&#x27;, function() {
+    transform.on('readable', function() {
       var r, results;
       results = [];
       while ((r = transform.read())) {
@@ -1094,14 +1087,14 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
       }
       return results;
     });
-    transform.on(&#x27;error&#x27;, function(err) {
+    transform.on('error', function(err) {
       error = true;
       if (callback) {
         return callback(err);
       }
     });
-    transform.on(&#x27;end&#x27;, function() {
-      if (callback &#x26;&#x26; !error) {
+    transform.on('end', function() {
+      if (callback &amp;&amp; !error) {
         return callback(null, result);
       }
     });
@@ -1112,7 +1105,7 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
 Execute this script with the command `node samples/callback.js`.
 
 ```javascript
-var csv = require(&#x27;csv&#x27;);
+var csv = require('csv');
 
 csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
 csv.parse(data, function(err, data){
@@ -1181,7 +1174,7 @@ csv.parse(data, function(err, data){
     options = arguments[0];
     callback = arguments[1];
   } else if (arguments.length === 1) {
-    if (typeof arguments[0] === &#x27;function&#x27;) {
+    if (typeof arguments[0] === 'function') {
       options = {};
       callback = arguments[0];
     } else {
@@ -1193,7 +1186,7 @@ csv.parse(data, function(err, data){
   generator = new Generator(options);
   if (callback) {
     data = [];
-    generator.on(&#x27;readable&#x27;, function() {
+    generator.on('readable', function() {
       var d, results;
       results = [];
       while (d = generator.read()) {
@@ -1201,9 +1194,9 @@ csv.parse(data, function(err, data){
       }
       return results;
     });
-    generator.on(&#x27;error&#x27;, callback);
-    generator.on(&#x27;end&#x27;, function() {
-      return callback(null, options.objectMode ? data : data.join(&#x27;&#x27;));
+    generator.on('error', callback);
+    generator.on('end', function() {
+      return callback(null, options.objectMode ? data : data.join(''));
     });
   }
   return generator;
@@ -1214,7 +1207,7 @@ csv.parse(data, function(err, data){
 Execute this script with the command `node samples/callback.js`.
 
 ```javascript
-var csv = require(&#x27;csv&#x27;);
+var csv = require('csv');
 
 csv.<span class="apidocCodeKeywordSpan">generate</span>({seed: 1, columns: 2, length: 20}, function(err, data){
 csv.parse(data, function(err, data){
@@ -1254,7 +1247,7 @@ csv.parse(data, function(err, data){
     base3.fixed_size = false;
   }
   if (this.fixed_size_buffer == null) {
-    this.fixed_size_buffer = &#x27;&#x27;;
+    this.fixed_size_buffer = '';
   }
   if ((base4 = this.options).start == null) {
     base4.start = Date.now();
@@ -1269,20 +1262,20 @@ csv.parse(data, function(err, data){
     base7.length = -1;
   }
   if ((base8 = this.options).delimiter == null) {
-    base8.delimiter = &#x27;,&#x27;;
+    base8.delimiter = ',';
   }
   this.count_written = 0;
   this.count_created = 0;
-  if (typeof this.options.columns === &#x27;number&#x27;) {
+  if (typeof this.options.columns === 'number') {
     this.options.columns = new Array(this.options.columns);
   }
   ref = this.options.columns;
-  for (i = j = 0, len = ref.length; j &#x3c; len; i = ++j) {
+  for (i = j = 0, len = ref.length; j &lt; len; i = ++j) {
     v = ref[i];
     if (v == null) {
-      v = &#x27;ascii&#x27;;
+      v = 'ascii';
     }
-    if (typeof v === &#x27;string&#x27;) {
+    if (typeof v === 'string') {
       this.options.columns[i] = Generator[v];
     }
   }
@@ -1323,7 +1316,7 @@ csv.parse(data, function(err, data){
     base3.fixed_size = false;
   }
   if (this.fixed_size_buffer == null) {
-    this.fixed_size_buffer = &#x27;&#x27;;
+    this.fixed_size_buffer = '';
   }
   if ((base4 = this.options).start == null) {
     base4.start = Date.now();
@@ -1338,20 +1331,20 @@ csv.parse(data, function(err, data){
     base7.length = -1;
   }
   if ((base8 = this.options).delimiter == null) {
-    base8.delimiter = &#x27;,&#x27;;
+    base8.delimiter = ',';
   }
   this.count_written = 0;
   this.count_created = 0;
-  if (typeof this.options.columns === &#x27;number&#x27;) {
+  if (typeof this.options.columns === 'number') {
     this.options.columns = new Array(this.options.columns);
   }
   ref = this.options.columns;
-  for (i = j = 0, len = ref.length; j &#x3c; len; i = ++j) {
+  for (i = j = 0, len = ref.length; j &lt; len; i = ++j) {
     v = ref[i];
     if (v == null) {
-      v = &#x27;ascii&#x27;;
+      v = 'ascii';
     }
-    if (typeof v === &#x27;string&#x27;) {
+    if (typeof v === 'string') {
       this.options.columns[i] = Generator[v];
     }
   }
@@ -1372,12 +1365,12 @@ csv.parse(data, function(err, data){
     <li>description and source-code<pre class="apidocCodePre">ascii = function (gen) {
   var char, column, j, nb_chars, ref;
   column = [];
-  for (nb_chars = j = 0, ref = Math.ceil(gen.random() * gen.options.max_word_length); 0 &#x3c;= ref ? j &#x3c; ref : j &#x3e; ref; nb_chars = 0
- &#x3c;= ref ? ++j : --j) {
+  for (nb_chars = j = 0, ref = Math.ceil(gen.random() * gen.options.max_word_length); 0 &lt;= ref ? j &lt; ref : j &gt; ref; nb_chars = 0
+ &lt;= ref ? ++j : --j) {
     char = Math.floor(gen.random() * 32);
-    column.push(String.fromCharCode(char + (char &#x3c; 16 ? 65 : 97 - 16)));
+    column.push(String.fromCharCode(char + (char &lt; 16 ? 65 : 97 - 16)));
   }
-  return column.join(&#x27;&#x27;);
+  return column.join('');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -1430,7 +1423,7 @@ csv.parse(data, function(err, data){
   // legacy
   this.readable = true;
 
-  if (options &#x26;&#x26; typeof options.read === &#x27;function&#x27;)
+  if (options &amp;&amp; typeof options.read === 'function')
     this._read = options.read;
 
   Stream.call(this);
@@ -1460,42 +1453,42 @@ csv.parse(data, function(err, data){
     data.push(this.fixed_size_buffer);
   }
   while (true) {
-    if ((this.count_created === this.options.length) || (this.options.end &#x26;&#x26; Date.now() &#x3e; this.options.end)) {
+    if ((this.count_created === this.options.length) || (this.options.end &amp;&amp; Date.now() &gt; this.options.end)) {
       if (data.length) {
         if (this.options.objectMode) {
-          for (j = 0, len = data.length; j &#x3c; len; j++) {
+          for (j = 0, len = data.length; j &lt; len; j++) {
             line = data[j];
             this.count_written++;
             this.push(line);
           }
         } else {
           this.count_written++;
-          this.push(data.join(&#x27;&#x27;));
+          this.push(data.join(''));
         }
       }
       return this.push(null);
     }
     line = [];
     ref = this.options.columns;
-    for (k = 0, len1 = ref.length; k &#x3c; len1; k++) {
+    for (k = 0, len1 = ref.length; k &lt; len1; k++) {
       header = ref[k];
-      line.push(&#x22;&#x22; + (header(this)));
+      line.push("" + (header(this)));
     }
     if (this.options.objectMode) {
       lineLength = 0;
-      for (l = 0, len2 = line.length; l &#x3c; len2; l++) {
+      for (l = 0, len2 = line.length; l &lt; len2; l++) {
         column = line[l];
         lineLength += column.length;
       }
     } else {
-      line = &#x22;&#x22; + (this.count_created === 0 ? &#x27;&#x27; : &#x27;\n&#x27;) + (line.join(this.options.delimiter));
+      line = "" + (this.count_created === 0 ? '' : '\n') + (line.join(this.options.delimiter));
       lineLength = line.length;
     }
     this.count_created++;
-    if (length + lineLength &#x3e; size) {
+    if (length + lineLength &gt; size) {
       if (this.options.objectMode) {
         data.push(line);
-        for (m = 0, len3 = data.length; m &#x3c; len3; m++) {
+        for (m = 0, len3 = data.length; m &lt; len3; m++) {
           line = data[m];
           this.count_written++;
           this.push(line);
@@ -1508,7 +1501,7 @@ csv.parse(data, function(err, data){
           data.push(line);
         }
         this.count_written++;
-        this.push(data.join(&#x27;&#x27;));
+        this.push(data.join(''));
       }
       break;
     }
@@ -1533,16 +1526,16 @@ csv.parse(data, function(err, data){
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-generator.on(&#x27;readable&#x27;, function(){
+generator.on('readable', function(){
   while(data = generator.read()){
     parser.write(data);
   }
 });
-generator.on(&#x27;end&#x27;, function(){
+generator.on('end', function(){
   parser.<span class="apidocCodeKeywordSpan">end</span>()
 });
 
-parser.on(&#x27;readable&#x27;, function(){
+parser.on('readable', function(){
   while(data = parser.read()){
     transformer.write(data);
   }
@@ -1589,25 +1582,25 @@ parser.on(&#x27;readable&#x27;, function(){
     data = arguments[0];
     options = arguments[1];
     callback = arguments[2];
-    if (typeof callback !== &#x27;function&#x27;) {
-      throw Error(&#x22;Invalid callback argument: &#x22; + (JSON.stringify(callback)));
+    if (typeof callback !== 'function') {
+      throw Error("Invalid callback argument: " + (JSON.stringify(callback)));
     }
-    if (!(typeof data === &#x27;string&#x27; || Buffer.isBuffer(arguments[0]))) {
-      return callback(Error(&#x22;Invalid data argument: &#x22; + (JSON.stringify(data))));
+    if (!(typeof data === 'string' || Buffer.isBuffer(arguments[0]))) {
+      return callback(Error("Invalid data argument: " + (JSON.stringify(data))));
     }
   } else if (arguments.length === 2) {
-    if (typeof arguments[0] === &#x27;string&#x27; || Buffer.isBuffer(arguments[0])) {
+    if (typeof arguments[0] === 'string' || Buffer.isBuffer(arguments[0])) {
       data = arguments[0];
     } else {
       options = arguments[0];
     }
-    if (typeof arguments[1] === &#x27;function&#x27;) {
+    if (typeof arguments[1] === 'function') {
       callback = arguments[1];
     } else {
       options = arguments[1];
     }
   } else if (arguments.length === 1) {
-    if (typeof arguments[0] === &#x27;function&#x27;) {
+    if (typeof arguments[0] === 'function') {
       callback = arguments[0];
     } else {
       options = arguments[0];
@@ -1626,7 +1619,7 @@ parser.on(&#x27;readable&#x27;, function(){
   if (callback) {
     called = false;
     chunks = options.objname ? {} : [];
-    parser.on(&#x27;readable&#x27;, function() {
+    parser.on('readable', function() {
       var chunk, results;
       results = [];
       while (chunk = parser.read()) {
@@ -1638,11 +1631,11 @@ parser.on(&#x27;readable&#x27;, function(){
       }
       return results;
     });
-    parser.on(&#x27;error&#x27;, function(err) {
+    parser.on('error', function(err) {
       called = true;
       return callback(err);
     });
-    parser.on(&#x27;end&#x27;, function() {
+    parser.on('end', function() {
       if (!called) {
         return callback(null, chunks);
       }
@@ -1655,7 +1648,7 @@ parser.on(&#x27;readable&#x27;, function(){
 Execute this script with the command `node samples/callback.js`.
 
 ```javascript
-var csv = require(&#x27;csv&#x27;);
+var csv = require('csv');
 
 csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
 csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
@@ -1694,23 +1687,23 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
   if ((base = this.options).rowDelimiter == null) {
     base.rowDelimiter = null;
   }
-  if (typeof this.options.rowDelimiter === &#x27;string&#x27;) {
+  if (typeof this.options.rowDelimiter === 'string') {
     this.options.rowDelimiter = [this.options.rowDelimiter];
   }
   if ((base1 = this.options).delimiter == null) {
-    base1.delimiter = &#x27;,&#x27;;
+    base1.delimiter = ',';
   }
   if ((base2 = this.options).quote == null) {
-    base2.quote = &#x27;&#x22;&#x27;;
+    base2.quote = '"';
   }
   if ((base3 = this.options).escape == null) {
-    base3.escape = &#x27;&#x22;&#x27;;
+    base3.escape = '"';
   }
   if ((base4 = this.options).columns == null) {
     base4.columns = null;
   }
   if ((base5 = this.options).comment == null) {
-    base5.comment = &#x27;&#x27;;
+    base5.comment = '';
   }
   if ((base6 = this.options).objname == null) {
     base6.objname = false;
@@ -1751,7 +1744,7 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
   this.empty_line_count = 0;
   this.is_int = /^(\-|\+)?([1-9]+[0-9]*)$/;
   this.is_float = function(value) {
-    return (value - parseFloat(value) + 1) &#x3e;= 0;
+    return (value - parseFloat(value) + 1) &gt;= 0;
   };
   this._ = {};
   this._.decoder = new StringDecoder();
@@ -1762,8 +1755,8 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
   this._.closingQuote = 0;
   this._.line = [];
   this._.chunks = [];
-  this._.rawBuf = &#x27;&#x27;;
-  this._.buf = &#x27;&#x27;;
+  this._.rawBuf = '';
+  this._.buf = '';
   if (this.options.rowDelimiter) {
     this._.rowDelimiterLength = Math.max.apply(Math, this.options.rowDelimiter.map(function(v) {
       return v.length;
@@ -1804,23 +1797,23 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
   if ((base = this.options).rowDelimiter == null) {
     base.rowDelimiter = null;
   }
-  if (typeof this.options.rowDelimiter === &#x27;string&#x27;) {
+  if (typeof this.options.rowDelimiter === 'string') {
     this.options.rowDelimiter = [this.options.rowDelimiter];
   }
   if ((base1 = this.options).delimiter == null) {
-    base1.delimiter = &#x27;,&#x27;;
+    base1.delimiter = ',';
   }
   if ((base2 = this.options).quote == null) {
-    base2.quote = &#x27;&#x22;&#x27;;
+    base2.quote = '"';
   }
   if ((base3 = this.options).escape == null) {
-    base3.escape = &#x27;&#x22;&#x27;;
+    base3.escape = '"';
   }
   if ((base4 = this.options).columns == null) {
     base4.columns = null;
   }
   if ((base5 = this.options).comment == null) {
-    base5.comment = &#x27;&#x27;;
+    base5.comment = '';
   }
   if ((base6 = this.options).objname == null) {
     base6.objname = false;
@@ -1861,7 +1854,7 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
   this.empty_line_count = 0;
   this.is_int = /^(\-|\+)?([1-9]+[0-9]*)$/;
   this.is_float = function(value) {
-    return (value - parseFloat(value) + 1) &#x3e;= 0;
+    return (value - parseFloat(value) + 1) &gt;= 0;
   };
   this._ = {};
   this._.decoder = new StringDecoder();
@@ -1872,8 +1865,8 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
   this._.closingQuote = 0;
   this._.line = [];
   this._.chunks = [];
-  this._.rawBuf = &#x27;&#x27;;
-  this._.buf = &#x27;&#x27;;
+  this._.rawBuf = '';
+  this._.buf = '';
   if (this.options.rowDelimiter) {
     this._.rowDelimiterLength = Math.max.apply(Math, this.options.rowDelimiter.map(function(v) {
       return v.length;
@@ -1912,16 +1905,16 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
   this._readableState.sync = false;
 
   if (options) {
-    if (typeof options.transform === &#x27;function&#x27;)
+    if (typeof options.transform === 'function')
       this._transform = options.transform;
 
-    if (typeof options.flush === &#x27;function&#x27;)
+    if (typeof options.flush === 'function')
       this._flush = options.flush;
   }
 
   // When the writable side finishes, then flush out anything remaining.
-  this.once(&#x27;prefinish&#x27;, function() {
-    if (typeof this._flush === &#x27;function&#x27;)
+  this.once('prefinish', function() {
+    if (typeof this._flush === 'function')
       this._flush(function(er) {
         done(stream, er);
       });
@@ -1948,38 +1941,38 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
     <ul>
     <li>description and source-code<pre class="apidocCodePre">__push = function (line) {
   var field, i, j, len, lineAsColumns, rawBuf, row;
-  if (this.options.skip_lines_with_empty_values &#x26;&#x26; line.join(&#x27;&#x27;).trim() === &#x27;&#x27;) {
+  if (this.options.skip_lines_with_empty_values &amp;&amp; line.join('').trim() === '') {
     return;
   }
   row = null;
   if (this.options.columns === true) {
     this.options.columns = line;
-    rawBuf = &#x27;&#x27;;
+    rawBuf = '';
     return;
-  } else if (typeof this.options.columns === &#x27;function&#x27;) {
+  } else if (typeof this.options.columns === 'function') {
     this.options.columns = this.options.columns(line);
-    rawBuf = &#x27;&#x27;;
+    rawBuf = '';
     return;
   }
-  if (!this._.line_length &#x26;&#x26; line.length &#x3e; 0) {
+  if (!this._.line_length &amp;&amp; line.length &gt; 0) {
     this._.line_length = this.options.columns ? this.options.columns.length : line.length;
   }
-  if (line.length === 1 &#x26;&#x26; line[0] === &#x27;&#x27;) {
+  if (line.length === 1 &amp;&amp; line[0] === '') {
     this.empty_line_count++;
   } else if (line.length !== this._.line_length) {
     if (this.options.relax_column_count) {
       this.skipped_line_count++;
     } else if (this.options.columns != null) {
-      throw Error(&#x22;Number of columns on line &#x22; + this.lines + &#x22; does not match header&#x22;);
+      throw Error("Number of columns on line " + this.lines + " does not match header");
     } else {
-      throw Error(&#x22;Number of columns is inconsistent on line &#x22; + this.lines);
+      throw Error("Number of columns is inconsistent on line " + this.lines);
     }
   } else {
     this.count++;
   }
   if (this.options.columns != null) {
     lineAsColumns = {};
-    for (i = j = 0, len = line.length; j &#x3c; len; i = ++j) {
+    for (i = j = 0, len = line.length; j &lt; len; i = ++j) {
       field = line[i];
       if (this.options.columns[i] === false) {
         continue;
@@ -1994,10 +1987,10 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
   } else {
     row = line;
   }
-  if (this.count &#x3c; this.options.from) {
+  if (this.count &lt; this.options.from) {
     return;
   }
-  if (this.count &#x3e; this.options.to) {
+  if (this.count &gt; this.options.to) {
     return;
   }
   if (this.options.raw) {
@@ -2005,7 +1998,7 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
       raw: this._.rawBuf,
       row: row
     });
-    return this._.rawBuf = &#x27;&#x27;;
+    return this._.rawBuf = '';
   } else {
     return this.push(row);
   }
@@ -2028,7 +2021,7 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
 , results, rowDelimiter, rtrim, wasCommenting;
   is_int = (function(_this) {
     return function(value) {
-      if (typeof _this.is_int === &#x27;function&#x27;) {
+      if (typeof _this.is_int === 'function') {
         return _this.is_int(value);
       } else {
         return _this.is_int.test(value);
@@ -2037,7 +2030,7 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
   })(this);
   is_float = (function(_this) {
     return function(value) {
-      if (typeof _this.is_float === &#x27;function&#x27;) {
+      if (typeof _this.is_float === 'function') {
         return _this.is_float(value);
       } else {
         return _this.is_float.test(value);
@@ -2068,38 +2061,38 @@ csv.<span class="apidocCodeKeywordSpan">parse</span>(data, function(err, data){
   chars = this._.buf + chars;
   l = chars.length;
   i = 0;
-  if (this.lines === 0 &#x26;&#x26; 0xFEFF === chars.charCodeAt(0)) {
+  if (this.lines === 0 &amp;&amp; 0xFEFF === chars.charCodeAt(0)) {
     i++;
   }
-  while (i &#x3c; l) {
+  while (i &lt; l) {
     if (!end) {
       remainingBuffer = chars.substr(i, l - i);
-      if ((!this.options.rowDelimiter &#x26;&#x26; i + 3 &#x3e; l) || (!this._.commenting &#x26;&#x26; l - i &#x3c; this.options.comment.length &#x26;&#x26; this.options
-.comment.substr(0, l - i) === remainingBuffer) || (this.options.rowDelimiter &#x26;&#x26; l - i &#x3c; this._.rowDelimiterLength &#x26;&#x26; this.options
+      if ((!this.options.rowDelimiter &amp;&amp; i + 3 &gt; l) || (!this._.commenting &amp;&amp; l - i &lt; this.options.comment.length &amp;&amp; this.options
+.comment.substr(0, l - i) === remainingBuffer) || (this.options.rowDelimiter &amp;&amp; l - i &lt; this._.rowDelimiterLength &amp;&amp; this.options
 .rowDelimiter.some(function(rd) {
         return rd.substr(0, l - i) === remainingBuffer;
-      })) || (this.options.rowDelimiter &#x26;&#x26; this._.quoting &#x26;&#x26; l - i &#x3c; (this.options.quote.length + this._.rowDelimiterLength) &#x26;&#x26;
+      })) || (this.options.rowDelimiter &amp;&amp; this._.quoting &amp;&amp; l - i &lt; (this.options.quote.length + this._.rowDelimiterLength) &amp;&amp;
 this.options.rowDelimiter.some((function(_this) {
         return function(rd) {
           return (_this.options.quote + rd).substr(0, l - i) === remainingBuffer;
         };
-      })(this))) || (l - i &#x3c;= this.options.delimiter.length &#x26;&#x26; this.options.delimiter.substr(0, l - i) === remainingBuffer) || (
-l - i &#x3c;= this.options.escape.length &#x26;&#x26; this.options.escape.substr(0, l - i) === remainingBuffer)) {
+      })(this))) || (l - i &lt;= this.options.delimiter.length &amp;&amp; this.options.delimiter.substr(0, l - i) === remainingBuffer) || (
+l - i &lt;= this.options.escape.length &amp;&amp; this.options.escape.substr(0, l - i) === remainingBuffer)) {
         break;
       }
     }
     char = this._.nextChar ? this._.nextChar : chars.charAt(i);
-    this._.nextChar = l &#x3e; i + 1 ? chars.charAt(i + 1) : &#x27;&#x27;;
+    this._.nextChar = l &gt; i + 1 ? chars.charAt(i + 1) : '';
     if (this.options.raw) {
       this._.rawBuf += char;
     }
     if (this.options.rowDelimiter == null) {
       nextCharPos = i;
       rowDelimiter = null;
-      if (!this._.quoting &#x26;&#x26; (char === &#x27;\n&#x27; || char === &#x27;\r&#x27;)) {
+      if (!this._.quoting &amp;&amp; (char === '\n' || char === '\r')) {
         rowDelimiter = char;
         nextCharPos += 1;
-      } else if (!(!this._.quoting &#x26;&#x26; char === this.options.quote) &#x26;&#x26; (this._.nextChar === &#x27;\n&#x27; || this._.nextChar === &#x27;\r&#x27;)) {
+      } else if (!(!this._.quoting &amp;&amp; char === this.options.quote) &amp;&amp; (this._.nextChar === '\n' || this._.nextChar === '\r')) {
         rowDelimiter = this._.nextChar;
         nextCharPos += 2;
         if (this.raw) {
@@ -2107,23 +2100,23 @@ l - i &#x3c;= this.options.escape.length &#x26;&#x26; this.options.escape.substr
         }
       }
       if (rowDelimiter) {
-        if (rowDelimiter === &#x27;\r&#x27; &#x26;&#x26; chars.charAt(nextCharPos) === &#x27;\n&#x27;) {
-          rowDelimiter += &#x27;\n&#x27;;
+        if (rowDelimiter === '\r' &amp;&amp; chars.charAt(nextCharPos) === '\n') {
+          rowDelimiter += '\n';
         }
         this.options.rowDelimiter = [rowDelimiter];
         this._.rowDelimiterLength = rowDelimiter.length;
       }
     }
-    if (!this._.commenting &#x26;&#x26; char === this.options.escape) {
+    if (!this._.commenting &amp;&amp; char === this.options.escape) {
       escapeIsQuote = this.options.escape === this.options.quote;
       isEscape = this._.nextChar === this.options.escape;
       isQuote = this._.nextChar === this.options.quote;
-      if (!(escapeIsQuote &#x26;&#x26; (this._.field == null) &#x26;&#x26; !this._.quoting) &#x26;&#x26; (isEscape || isQuote)) {
+      if (!(escapeIsQuote &amp;&amp; (this._.field == null) &amp;&amp; !this._.quoting) &amp;&amp; (isEscape || isQuote)) {
         i++;
         char = this._.nextChar;
         this._.nextChar = chars.charAt(i + 1);
         if (this._.field == null) {
-          this._.field = &#x27;&#x27;;
+          this._.field = '';
         }
         this._.field += char;
         if (this.options.raw) {
@@ -2150,16 +2143,16 @@ l - i &#x3c;= this.options.escape.length &#x26;&#x26; this.options.escape.substr
   try {
     this.__write(this._.decoder.end(), true);
     if (this._.quoting) {
-      this.emit(&#x27;error&#x27;, new Error(&#x22;Quoted field not terminated at line &#x22; + (this.lines + 1)));
+      this.emit('error', new Error("Quoted field not terminated at line " + (this.lines + 1)));
       return;
     }
-    if (this._.line.length &#x3e; 0) {
+    if (this._.line.length &gt; 0) {
       this.__push(this._.line);
     }
     return callback();
   } catch (error) {
     err = error;
-    return this.emit(&#x27;error&#x27;, err);
+    return this.emit('error', err);
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -2184,7 +2177,7 @@ l - i &#x3c;= this.options.escape.length &#x26;&#x26; this.options.escape.substr
     return callback();
   } catch (error) {
     err = error;
-    return this.emit(&#x27;error&#x27;, err);
+    return this.emit('error', err);
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -2216,13 +2209,13 @@ l - i &#x3c;= this.options.escape.length &#x26;&#x26; this.options.escape.substr
     } else {
       options = arguments[0];
     }
-    if (typeof arguments[1] === &#x27;function&#x27;) {
+    if (typeof arguments[1] === 'function') {
       callback = arguments[1];
     } else {
       options = arguments[1];
     }
   } else if (arguments.length === 1) {
-    if (typeof arguments[0] === &#x27;function&#x27;) {
+    if (typeof arguments[0] === 'function') {
       callback = arguments[0];
     } else if (Array.isArray(arguments[0])) {
       data = arguments[0];
@@ -2237,7 +2230,7 @@ l - i &#x3c;= this.options.escape.length &#x26;&#x26; this.options.escape.substr
   if (data) {
     process.nextTick(function() {
       var d, j, len;
-      for (j = 0, len = data.length; j &#x3c; len; j++) {
+      for (j = 0, len = data.length; j &lt; len; j++) {
         d = data[j];
         stringifier.write(d);
       }
@@ -2246,7 +2239,7 @@ l - i &#x3c;= this.options.escape.length &#x26;&#x26; this.options.escape.substr
   }
   if (callback) {
     chunks = [];
-    stringifier.on(&#x27;readable&#x27;, function() {
+    stringifier.on('readable', function() {
       var chunk, results;
       results = [];
       while (chunk = stringifier.read()) {
@@ -2254,17 +2247,17 @@ l - i &#x3c;= this.options.escape.length &#x26;&#x26; this.options.escape.substr
       }
       return results;
     });
-    stringifier.on(&#x27;error&#x27;, function(err) {
+    stringifier.on('error', function(err) {
       return callback(err);
     });
-    stringifier.on(&#x27;end&#x27;, function() {
-      return callback(null, chunks.join(&#x27;&#x27;));
+    stringifier.on('end', function() {
+      return callback(null, chunks.join(''));
     });
   }
   return stringifier;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-var csv = require(&#x27;csv&#x27;);
+var csv = require('csv');
 
 csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
   csv.parse(data, function(err, data){
@@ -2303,10 +2296,10 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
   stream.Transform.call(this, options);
   this.options = options;
   if ((base = this.options).delimiter == null) {
-    base.delimiter = &#x27;,&#x27;;
+    base.delimiter = ',';
   }
   if ((base1 = this.options).quote == null) {
-    base1.quote = &#x27;&#x22;&#x27;;
+    base1.quote = '"';
   }
   if ((base2 = this.options).quoted == null) {
     base2.quoted = false;
@@ -2318,7 +2311,7 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
     base4.eof = true;
   }
   if ((base5 = this.options).escape == null) {
-    base5.escape = &#x27;&#x22;&#x27;;
+    base5.escape = '"';
   }
   if ((base6 = this.options).columns == null) {
     base6.columns = null;
@@ -2331,15 +2324,15 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
   }
   if ((base9 = this.options.formatters).date == null) {
     base9.date = function(value) {
-      return &#x27;&#x27; + value.getTime();
+      return '' + value.getTime();
     };
   }
   if ((base10 = this.options.formatters).bool == null) {
     base10.bool = function(value) {
       if (value) {
-        return &#x27;1&#x27;;
+        return '1';
       } else {
-        return &#x27;&#x27;;
+        return '';
       }
     };
   }
@@ -2349,26 +2342,26 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
     };
   }
   if ((base12 = this.options).rowDelimiter == null) {
-    base12.rowDelimiter = &#x27;\n&#x27;;
+    base12.rowDelimiter = '\n';
   }
   if (this.countWriten == null) {
     this.countWriten = 0;
   }
   switch (this.options.rowDelimiter) {
-    case &#x27;auto&#x27;:
+    case 'auto':
       this.options.rowDelimiter = null;
       break;
-    case &#x27;unix&#x27;:
-      this.options.rowDelimiter = &#x22;\n&#x22;;
+    case 'unix':
+      this.options.rowDelimiter = "\n";
       break;
-    case &#x27;mac&#x27;:
-      this.options.rowDelimiter = &#x22;\r&#x22;;
+    case 'mac':
+      this.options.rowDelimiter = "\r";
       break;
-    case &#x27;windows&#x27;:
-      this.options.rowDelimiter = &#x22;\r\n&#x22;;
+    case 'windows':
+      this.options.rowDelimiter = "\r\n";
       break;
-    case &#x27;unicode&#x27;:
-      this.options.rowDelimiter = &#x22;\u2028&#x22;;
+    case 'unicode':
+      this.options.rowDelimiter = "\u2028";
   }
   return this;
 }</pre></li>
@@ -2402,10 +2395,10 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
   stream.Transform.call(this, options);
   this.options = options;
   if ((base = this.options).delimiter == null) {
-    base.delimiter = &#x27;,&#x27;;
+    base.delimiter = ',';
   }
   if ((base1 = this.options).quote == null) {
-    base1.quote = &#x27;&#x22;&#x27;;
+    base1.quote = '"';
   }
   if ((base2 = this.options).quoted == null) {
     base2.quoted = false;
@@ -2417,7 +2410,7 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
     base4.eof = true;
   }
   if ((base5 = this.options).escape == null) {
-    base5.escape = &#x27;&#x22;&#x27;;
+    base5.escape = '"';
   }
   if ((base6 = this.options).columns == null) {
     base6.columns = null;
@@ -2430,15 +2423,15 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
   }
   if ((base9 = this.options.formatters).date == null) {
     base9.date = function(value) {
-      return &#x27;&#x27; + value.getTime();
+      return '' + value.getTime();
     };
   }
   if ((base10 = this.options.formatters).bool == null) {
     base10.bool = function(value) {
       if (value) {
-        return &#x27;1&#x27;;
+        return '1';
       } else {
-        return &#x27;&#x27;;
+        return '';
       }
     };
   }
@@ -2448,26 +2441,26 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
     };
   }
   if ((base12 = this.options).rowDelimiter == null) {
-    base12.rowDelimiter = &#x27;\n&#x27;;
+    base12.rowDelimiter = '\n';
   }
   if (this.countWriten == null) {
     this.countWriten = 0;
   }
   switch (this.options.rowDelimiter) {
-    case &#x27;auto&#x27;:
+    case 'auto':
       this.options.rowDelimiter = null;
       break;
-    case &#x27;unix&#x27;:
-      this.options.rowDelimiter = &#x22;\n&#x22;;
+    case 'unix':
+      this.options.rowDelimiter = "\n";
       break;
-    case &#x27;mac&#x27;:
-      this.options.rowDelimiter = &#x22;\r&#x22;;
+    case 'mac':
+      this.options.rowDelimiter = "\r";
       break;
-    case &#x27;windows&#x27;:
-      this.options.rowDelimiter = &#x22;\r\n&#x22;;
+    case 'windows':
+      this.options.rowDelimiter = "\r\n";
       break;
-    case &#x27;unicode&#x27;:
-      this.options.rowDelimiter = &#x22;\u2028&#x22;;
+    case 'unicode':
+      this.options.rowDelimiter = "\u2028";
   }
   return this;
 }</pre></li>
@@ -2502,16 +2495,16 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
   this._readableState.sync = false;
 
   if (options) {
-    if (typeof options.transform === &#x27;function&#x27;)
+    if (typeof options.transform === 'function')
       this._transform = options.transform;
 
-    if (typeof options.flush === &#x27;function&#x27;)
+    if (typeof options.flush === 'function')
       this._flush = options.flush;
   }
 
   // When the writable side finishes, then flush out anything remaining.
-  this.once(&#x27;prefinish&#x27;, function() {
-    if (typeof this._flush === &#x27;function&#x27;)
+  this.once('prefinish', function() {
+    if (typeof this._flush === 'function')
       this._flush(function(er) {
         done(stream, er);
       });
@@ -2560,16 +2553,16 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-generator.on(&#x27;readable&#x27;, function(){
+generator.on('readable', function(){
   while(data = generator.read()){
     parser.write(data);
   }
 });
-generator.on(&#x27;end&#x27;, function(){
+generator.on('end', function(){
   parser.<span class="apidocCodeKeywordSpan">end</span>()
 });
 
-parser.on(&#x27;readable&#x27;, function(){
+parser.on('readable', function(){
   while(data = parser.read()){
     transformer.write(data);
   }
@@ -2595,7 +2588,7 @@ parser.on(&#x27;readable&#x27;, function(){
     return;
   }
   labels = this.options.columns;
-  if (typeof labels === &#x27;object&#x27;) {
+  if (typeof labels === 'object') {
     labels = (function() {
       var results;
       results = [];
@@ -2628,11 +2621,11 @@ parser.on(&#x27;readable&#x27;, function(){
     <li>description and source-code<pre class="apidocCodePre">stringify = function (line) {
   var _line, column, columns, containsEscape, containsLinebreak, containsQuote, containsdelimiter, delimiter, escape, field, i,
 j, l, newLine, quote, ref, ref1, regexp, shouldQuote, value;
-  if (typeof line !== &#x27;object&#x27;) {
+  if (typeof line !== 'object') {
     return line;
   }
   columns = this.options.columns;
-  if (typeof columns === &#x27;object&#x27; &#x26;&#x26; columns !== null &#x26;&#x26; !Array.isArray(columns)) {
+  if (typeof columns === 'object' &amp;&amp; columns !== null &amp;&amp; !Array.isArray(columns)) {
     columns = Object.keys(columns);
   }
   delimiter = this.options.delimiter;
@@ -2641,10 +2634,10 @@ j, l, newLine, quote, ref, ref1, regexp, shouldQuote, value;
   if (!Array.isArray(line)) {
     _line = [];
     if (columns) {
-      for (i = j = 0, ref = columns.length; 0 &#x3c;= ref ? j &#x3c; ref : j &#x3e; ref; i = 0 &#x3c;= ref ? ++j : --j) {
+      for (i = j = 0, ref = columns.length; 0 &lt;= ref ? j &lt; ref : j &gt; ref; i = 0 &lt;= ref ? ++j : --j) {
         column = columns[i];
         value = get(line, column);
-        _line[i] = typeof value === &#x27;undefined&#x27; || value === null ? &#x27;&#x27; : value;
+        _line[i] = typeof value === 'undefined' || value === null ? '' : value;
       }
     } else {
       for (column in line) {
@@ -2657,40 +2650,40 @@ j, l, newLine, quote, ref, ref1, regexp, shouldQuote, value;
     line.splice(columns.length);
   }
   if (Array.isArray(line)) {
-    newLine = &#x27;&#x27;;
-    for (i = l = 0, ref1 = line.length; 0 &#x3c;= ref1 ? l &#x3c; ref1 : l &#x3e; ref1; i = 0 &#x3c;= ref1 ? ++l : --l) {
+    newLine = '';
+    for (i = l = 0, ref1 = line.length; 0 &lt;= ref1 ? l &lt; ref1 : l &gt; ref1; i = 0 &lt;= ref1 ? ++l : --l) {
       field = line[i];
-      if (typeof field === &#x27;string&#x27;) {
+      if (typeof field === 'string') {
 
-      } else if (typeof field === &#x27;number&#x27;) {
-        field = &#x27;&#x27; + field;
-      } else if (typeof field === &#x27;boolean&#x27;) {
+      } else if (typeof field === 'number') {
+        field = '' + field;
+      } else if (typeof field === 'boolean') {
         field = this.options.formatters.bool(field);
       } else if (field instanceof Date) {
         field = this.options.formatters.date(field);
-      } else if (typeof field === &#x27;object&#x27; &#x26;&#x26; field !== null) {
+      } else if (typeof field === 'object' &amp;&amp; field !== null) {
         field = this.options.formatters.object(field);
       }
       if (field) {
-        containsdelimiter = field.indexOf(delimiter) &#x3e;= 0;
-        containsQuote = field.indexOf(quote) &#x3e;= 0;
-        containsEscape = field.indexOf(escape) &#x3e;= 0 &#x26;&#x26; (escape !== quote);
-        containsLinebreak = field.indexOf(&#x27;\r&#x27;) &#x3e;= 0 || field.indexOf(&#x27;\n&#x27;) &#x3e;= 0;
+        containsdelimiter = field.indexOf(delimiter) &gt;= 0;
+        containsQuote = field.indexOf(quote) &gt;= 0;
+        containsEscape = field.indexOf(escape) &gt;= 0 &amp;&amp; (escape !== quote);
+        containsLinebreak = field.indexOf('\r') &gt;= 0 || field.indexOf('\n') &gt;= 0;
         shouldQuote = containsQuote || containsdelimiter || containsLinebreak || this.options.quoted || (this.options.quotedString
- &#x26;&#x26; typeof line[i] === &#x27;string&#x27;);
-        if (shouldQuote &#x26;&#x26; containsEscape) {
-          regexp = escape === &#x27;\\&#x27; ? new RegExp(escape + escape, &#x27;g&#x27;) : new RegExp(escape, &#x27;g&#x27;);
+ &amp;&amp; typeof line[i] === 'string');
+        if (shouldQuote &amp;&amp; containsEscape) {
+          regexp = escape === '\\' ? new RegExp(escape + escape, 'g') : new RegExp(escape, 'g');
           field = field.replace(regexp, escape + escape);
         }
         if (containsQuote) {
-          regexp = new RegExp(quote, &#x27;g&#x27;);
+          regexp = new RegExp(quote, 'g');
           field = field.replace(regexp, escape + quote);
         }
         if (shouldQuote) {
           field = quote + field + quote;
         }
         newLine += field;
-      } else if (this.options.quotedEmpty || ((this.options.quotedEmpty == null) &#x26;&#x26; line[i] === &#x27;&#x27; &#x26;&#x26; this.options.quotedString)) {
+      } else if (this.options.quotedEmpty || ((this.options.quotedEmpty == null) &amp;&amp; line[i] === '' &amp;&amp; this.options.quotedString)) {
         newLine += quote + quote;
       }
       if (i !== line.length - 1) {
@@ -2702,7 +2695,7 @@ j, l, newLine, quote, ref, ref1, regexp, shouldQuote, value;
   return line;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-var csv = require(&#x27;csv&#x27;);
+var csv = require('csv');
 
 csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
   csv.parse(data, function(err, data){
@@ -2733,18 +2726,18 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
   if (chunk == null) {
     return;
   }
-  preserve = typeof chunk !== &#x27;object&#x27;;
+  preserve = typeof chunk !== 'object';
   if (!preserve) {
-    if (this.countWriten === 0 &#x26;&#x26; !Array.isArray(chunk)) {
+    if (this.countWriten === 0 &amp;&amp; !Array.isArray(chunk)) {
       if ((base = this.options).columns == null) {
         base.columns = Object.keys(chunk);
       }
     }
     try {
-      this.emit(&#x27;record&#x27;, chunk, this.countWriten);
+      this.emit('record', chunk, this.countWriten);
     } catch (error) {
       e = error;
-      return this.emit(&#x27;error&#x27;, e);
+      return this.emit('error', e);
     }
     if (this.options.eof) {
       chunk = this.stringify(chunk) + this.options.rowDelimiter;
@@ -2755,8 +2748,8 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
       }
     }
   }
-  if (typeof chunk === &#x27;number&#x27;) {
-    chunk = &#x22;&#x22; + chunk;
+  if (typeof chunk === 'number') {
+    chunk = "" + chunk;
   }
   if (this.countWriten === 0) {
     this.headers();
@@ -2802,35 +2795,35 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
     <li>description and source-code<pre class="apidocCodePre">transform = function () {
   var argument, callback, data, error, handler, i, j, k, len, options, result, transform, type, v;
   options = {};
-  for (i = j = 0, len = arguments.length; j &#x3c; len; i = ++j) {
+  for (i = j = 0, len = arguments.length; j &lt; len; i = ++j) {
     argument = arguments[i];
     type = typeof argument;
     if (argument === null) {
-      type = &#x27;null&#x27;;
-    } else if (type === &#x27;object&#x27; &#x26;&#x26; Array.isArray(argument)) {
-      type = &#x27;array&#x27;;
+      type = 'null';
+    } else if (type === 'object' &amp;&amp; Array.isArray(argument)) {
+      type = 'array';
     }
     if (i === 0) {
-      if (type === &#x27;function&#x27;) {
+      if (type === 'function') {
         handler = argument;
       } else if (type !== null) {
         data = argument;
       }
       continue;
     }
-    if (type === &#x27;object&#x27;) {
+    if (type === 'object') {
       for (k in argument) {
         v = argument[k];
         options[k] = v;
       }
-    } else if (type === &#x27;function&#x27;) {
-      if (handler &#x26;&#x26; i === arguments.length - 1) {
+    } else if (type === 'function') {
+      if (handler &amp;&amp; i === arguments.length - 1) {
         callback = argument;
       } else {
         handler = argument;
       }
-    } else if (type !== &#x27;null&#x27;) {
-      throw new Error(&#x27;Invalid arguments&#x27;);
+    } else if (type !== 'null') {
+      throw new Error('Invalid arguments');
     }
   }
   transform = new Transformer(options, handler);
@@ -2838,7 +2831,7 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
   if (data) {
     process.nextTick(function() {
       var len1, m, row;
-      for (m = 0, len1 = data.length; m &#x3c; len1; m++) {
+      for (m = 0, len1 = data.length; m &lt; len1; m++) {
         row = data[m];
         if (error) {
           break;
@@ -2850,7 +2843,7 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
   }
   if (callback || options.consume) {
     result = [];
-    transform.on(&#x27;readable&#x27;, function() {
+    transform.on('readable', function() {
       var r, results;
       results = [];
       while ((r = transform.read())) {
@@ -2862,14 +2855,14 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
       }
       return results;
     });
-    transform.on(&#x27;error&#x27;, function(err) {
+    transform.on('error', function(err) {
       error = true;
       if (callback) {
         return callback(err);
       }
     });
-    transform.on(&#x27;end&#x27;, function() {
-      if (callback &#x26;&#x26; !error) {
+    transform.on('end', function() {
+      if (callback &amp;&amp; !error) {
         return callback(null, result);
       }
     });
@@ -2880,7 +2873,7 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
 Execute this script with the command `node samples/callback.js`.
 
 ```javascript
-var csv = require(&#x27;csv&#x27;);
+var csv = require('csv');
 
 csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
 csv.parse(data, function(err, data){
@@ -2980,16 +2973,16 @@ csv.parse(data, function(err, data){
   this._readableState.sync = false;
 
   if (options) {
-    if (typeof options.transform === &#x27;function&#x27;)
+    if (typeof options.transform === 'function')
       this._transform = options.transform;
 
-    if (typeof options.flush === &#x27;function&#x27;)
+    if (typeof options.flush === 'function')
       this._flush = options.flush;
   }
 
   // When the writable side finishes, then flush out anything remaining.
-  this.once(&#x27;prefinish&#x27;, function() {
-    if (typeof this._flush === &#x27;function&#x27;)
+  this.once('prefinish', function() {
+    if (typeof this._flush === 'function')
       this._flush(function(er) {
         done(stream, er);
       });
@@ -3018,13 +3011,13 @@ csv.parse(data, function(err, data){
   var chunk, j, len;
   this.running--;
   if (err) {
-    return this.emit(&#x27;error&#x27;, err);
+    return this.emit('error', err);
   }
   this.finished++;
-  for (j = 0, len = chunks.length; j &#x3c; len; j++) {
+  for (j = 0, len = chunks.length; j &lt; len; j++) {
     chunk = chunks[j];
-    if (typeof chunk === &#x27;number&#x27;) {
-      chunk = &#x22;&#x22; + chunk;
+    if (typeof chunk === 'number') {
+      chunk = "" + chunk;
     }
     if (chunk != null) {
       this.push(chunk);
@@ -3073,7 +3066,7 @@ csv.parse(data, function(err, data){
   var callback, err, l;
   this.started++;
   this.running++;
-  if (this.running &#x3c; this.options.parallel) {
+  if (this.running &lt; this.options.parallel) {
     cb();
     cb = null;
   }
@@ -3088,13 +3081,13 @@ csv.parse(data, function(err, data){
       callback = (function(_this) {
         return function() {
           var chunks, err;
-          err = arguments[0], chunks = 2 &#x3c;= arguments.length ? slice.call(arguments, 1) : [];
+          err = arguments[0], chunks = 2 &lt;= arguments.length ? slice.call(arguments, 1) : [];
           return _this._done(err, chunks, cb);
         };
       })(this);
       this.transform.call(null, chunk, callback, this.options.params);
     } else {
-      throw Error(&#x22;Invalid handler arguments&#x22;);
+      throw Error("Invalid handler arguments");
     }
     return false;
   } catch (_error) {
@@ -3114,3 +3107,4 @@ csv.parse(data, function(err, data){
     ]
 </div>
 </div>
+</body></html>

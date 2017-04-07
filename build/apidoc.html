@@ -1531,7 +1531,23 @@ csv.parse(data, function(err, data){
     <li>description and source-code<pre class="apidocCodePre">end = function () {
   return this.push(null);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+generator.on(&#x27;readable&#x27;, function(){
+  while(data = generator.read()){
+    parser.write(data);
+  }
+});
+generator.on(&#x27;end&#x27;, function(){
+  parser.<span class="apidocCodeKeywordSpan">end</span>()
+});
+
+parser.on(&#x27;readable&#x27;, function(){
+  while(data = parser.read()){
+    transformer.write(data);
+  }
+});
+...</pre></li>
     </ul>
 
 
@@ -2542,7 +2558,23 @@ csv.generate({seed: 1, columns: 2, length: 20}, function(err, data){
   }
   return stream.Transform.prototype.end.apply(this, arguments);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+generator.on(&#x27;readable&#x27;, function(){
+  while(data = generator.read()){
+    parser.write(data);
+  }
+});
+generator.on(&#x27;end&#x27;, function(){
+  parser.<span class="apidocCodeKeywordSpan">end</span>()
+});
+
+parser.on(&#x27;readable&#x27;, function(){
+  while(data = parser.read()){
+    transformer.write(data);
+  }
+});
+...</pre></li>
     </ul>
 
 
